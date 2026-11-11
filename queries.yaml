@@ -1,0 +1,50 @@
+# Your ten LogQL expressions. Replace each `expr: TODO` with ONE metric query (a query that returns numbers, such as count_over_time(...)).
+#
+# "time" is the moment at which the query is evaluated:  "end" = just after the last log line,  "start+55m" = 55 minutes after the first log line.
+# (.lab/.window.json has both as unix times.) A range like [2h] looks back from that moment, so [2h] at "end" covers the whole data set.
+# The checker evaluates your expression at that moment and compares the RESULT with the right answer, so any correct way of asking is fine.
+#
+# The logs: label app="beanie" and service in gateway, menu, orders, payments, notifications.
+# gateway, menu, orders and payments log JSON (fields: ts, level, service, msg, request_id, trace_id, duration_ms, customer, order_id, route, status).
+# notifications logs plain text:  "sms sent country=PT order=ord_1a2b3c".
+questions:
+  - id: l01
+    time: end
+    question: "How many ERROR lines did each service log? One series per service (label service), value = number of lines."
+    expr: TODO
+  - id: l02
+    time: end
+    question: "How many lines of each level (info, warn, error) did the orders service log? One series per level (label level)."
+    expr: TODO
+  - id: l03
+    time: end
+    question: "What is the 95th percentile of duration_ms in the payments logs? (One number: a single series.)"
+    expr: TODO
+  - id: l04
+    time: end
+    question: "Which customer had the most failed orders, i.e. the most ERROR lines in the orders service? ONE series with the label customer."
+    expr: TODO
+  - id: l05
+    time: end
+    question: "How many log lines of any service contain the text card_declined? (One number.)"
+    expr: TODO
+  - id: l06
+    time: end
+    question: "What is the largest duration_ms the payments service logged? (One number: a single series.)"
+    expr: TODO
+  - id: l07
+    time: end
+    question: "How many SMS did the notifications service send per country? One series per country (label country). The lines are plain text: parse them."
+    expr: TODO
+  - id: l08
+    time: end
+    question: "What share (0 to 1) of the orders service's log lines are ERROR lines?"
+    expr: TODO
+  - id: l09
+    time: end
+    question: "How many DIFFERENT trace_ids appear in ERROR lines (across all services)? (One number.)"
+    expr: TODO
+  - id: l10
+    time: "start+55m"
+    question: "What was the average duration_ms of the orders log lines over the 5 minutes before that moment? (One number: a single series.)"
+    expr: TODO
