@@ -22,11 +22,15 @@
 
 ## 🎬 The situation
 
-<p align="center"><img src="assets/gifs/situation.gif" width="300" alt="Animation: {service=&quot;orders&quot;} | json | unwrap duration_ms"></p>
+<p align="center"><img src="assets/gifs/situation.gif" width="300" alt="Three layers of a LogQL query: streams, filters, numbers"></p>
 
-This afternoon Beanie failed orders for about twenty minutes. By the time anyone looked, it was over. Support has three angry e-mails and a question: *"How many customers were hurt, which service was it, and was it just the ones who wrote to us?"* Nobody can answer, because nobody wrote down what happened and the on-call engineer has gone home.
+This is a pairing session. Tomás is the on-call engineer who was away when it happened, and Support has just forwarded three angry e-mails to both of you:
 
-The logs, however, were kept. Two hours of them, from five services, in Loki. A log store is not a place you read: it is a database you **ask**. LogQL is its query language, and it works in three layers: pick the **streams** by label, **filter and parse** the lines, then optionally turn what is left into **numbers** and aggregate them like metrics. In this lab you answer ten precise questions with LogQL, and then you turn the answers into the incident report that should have been written at 15:00.
+> *"Beanie failed my orders for about twenty minutes this afternoon. How many customers were hurt, which service was it, and was it only the ones who wrote to us?"*
+
+Tomás shrugs: *"Nobody wrote anything down, and I was not there. But the logs were kept. Two hours of them, five services, all in Loki. You drive, I will ask the questions."*
+
+A log store is not a place you read, it is a database you **ask**. LogQL, its query language, works in three layers: pick the **streams** by label, **filter and parse** the lines, then turn what is left into **numbers**. By the end you will have answered ten precise questions and written the incident report that should have existed at 15:00.
 
 > [!IMPORTANT]
 > **Your mission**
@@ -39,7 +43,7 @@ The logs, however, were kept. Two hours of them, from five services, in Loki. A 
 
 <p align="center"><img src="assets/divider.svg" alt="" width="100%"></p>
 
-## Part 0 - The logs
+## Part 0 - Open the logs
 
 Fork this repository, clone your fork and run:
 
@@ -94,7 +98,7 @@ Things people trip over:
 
 <p align="center"><img src="assets/divider.svg" alt="" width="100%"></p>
 
-## Part 3 - The report
+## Part 3 - Write the report Tomás needs
 
 Using your queries (change the evaluation time and the filters as you explore), write `REPORT.md`, four short sections: **what happened**, **when and for how long**, **who was affected and how badly**, and **what you could not tell from logs alone**. Include numbers and times from your queries. A good test: a person who was not there should know whether to worry.
 
